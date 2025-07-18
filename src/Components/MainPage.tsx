@@ -52,12 +52,11 @@ export const MainPage: React.FC = () => {
       return matchesSearch;
   }) : [];
   // now i need to create a card for each item clicked on, and make it a pop up model
-
   return (
     <Box p={12} sx={{ backgroundColor: '#e0f7fa' }}>
       <Box display='flex' gap={2} mb={3}>
         <TextField
-          label='Search'
+          label='Filter'
           variant='outlined'
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -105,7 +104,6 @@ export const MainPage: React.FC = () => {
             e.currentTarget.style.backgroundColor = 'background.paper';
             }
         }onClick={() => {
-              // Open modal or perform action when card is clicked
               setItemUrl(item.url);
               setOpenModal(true);
             }}>LearnMore</Typography>

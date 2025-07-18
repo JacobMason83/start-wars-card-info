@@ -34,6 +34,6 @@ export interface PlanetProperties {
 export interface Film {
   uid: string;
   title: string;
-  // add other film fields as needed
+  // add other film fields as needed ie, director, and can go very expansive
 }
 

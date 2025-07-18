@@ -4,7 +4,7 @@ import { PersonModal } from "../Components/PersonModal";
 import userEvent from "@testing-library/user-event";
 import * as fetchModule from "../Utils/FetchStarWarsData";
 
-// Mock the fetch functions
+// grab all of teh functions, and mock the data needed for testing this 
 jest.mock("../Utils/FetchStarWarsData");
 
 const mockPersonData = {
@@ -16,8 +16,8 @@ const mockPersonData = {
   hair_color: "blond",
   skin_color: "fair",
   eye_color: "blue",
-  homeworld: "https://swapi.dev/api/planets/1/",
-  url: "https://swapi.dev/api/people/1/"
+  homeworld: "https://swapi.tech/api/planets/1/",
+  url: "https://swapi.tech/api/people/1/"
 };
 
 const mockPlanetData = {
