@@ -53,7 +53,7 @@ export const MainPage: React.FC = () => {
   }) : [];
   // now i need to create a card for each item clicked on, and make it a pop up model
   return (
-    <Box p={12} sx={{ backgroundColor: '#e0f7fa' }}>
+    <Box p={12} sx={{ backgroundColor: '#DFE4EBFF' }}>
       <Box display='flex' gap={2} mb={3}>
         <TextField
           label='Filter'
