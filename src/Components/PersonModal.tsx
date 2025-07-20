@@ -33,6 +33,8 @@ export const PersonModal: React.FC<PersonModalProps> = props => {
   React.useEffect(() => {
     if (person == null) {
       setMovies([])
+      setPlanets(null)
+      setPersonsData(null)
       return
     }
     if (person != null) {
@@ -48,6 +50,7 @@ export const PersonModal: React.FC<PersonModalProps> = props => {
       }
       fetchData()
     }
+
   }, [person, personsData?.homeworld, personsData?.url])
 
   if (!person) return null
