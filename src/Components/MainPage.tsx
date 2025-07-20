@@ -19,6 +19,7 @@ export const MainPage: React.FC = () => {
   const [nextUrl, setNextUrl] = useState<string | null>(null)
   const [prevUrl, setPrevUrl] = useState<string | null>(null)
   const [itemUrl, setItemUrl] = useState<string | null>(null)
+  const [totalPages,setTotalPages] = useState<number | null>(null)
 
   const [url, setUrl] = useState('https://www.swapi.tech/api/people/')  
   const [openModal, setOpenModal] = useState(false);
@@ -31,13 +32,15 @@ export const MainPage: React.FC = () => {
       setData(swapiData)
         setNextUrl(swapiData.next || nextUrl)
         setPrevUrl(swapiData.previous || prevUrl)
+        setTotalPages(swapiData.total_pages || totalPages)
 
       console.log('This is swapi data', swapiData)
-      console.log('This is nextUrl', swapiData.next)
+      console.log('This is nextUrl', nextUrl)
+      console.log("this is the prevUrl", prevUrl)
     }
     fetchSwapiData()
 } 
-,[nextUrl,prevUrl, url])
+,[nextUrl, prevUrl, totalPages, url])
   console.log('This is data', data?.results)
   const handleNext = () => {
       // When handleNext is called, nextUrl will be updated and useEffect will re-fetch
@@ -63,8 +66,9 @@ export const MainPage: React.FC = () => {
         />
 
       </Box>
-      <Grid container spacing={3}>
+      <Grid container spacing={6} gap={3} >
         {filteredData.map( item => (
+        <Grid size={2.4} >
           <Card key={item.uid} 
                         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "scale(1.05)";  
@@ -109,20 +113,23 @@ export const MainPage: React.FC = () => {
             }}>LearnMore</Typography>
             </CardContent>
           </Card>
+          </Grid>
         ))}
       </Grid>
             <Box display="flex" justifyContent="center" alignItems="center" mt={2} gap={2}>
         <Button
+        sx={{marginTop:'1rem'}}
           variant="contained"
           onClick={ () => {handlePrev()} }
-          disabled={prevUrl === null || prevUrl === 'https://www.swapi.tech/api/people/1'}
+          disabled={prevUrl == null || prevUrl === 'https://www.swapi.tech/api/people/1' || (prevUrl === 'https://www.swapi.tech/api/people?page=1&limit=10' && nextUrl === 'https://www.swapi.tech/api/people?page=2&limit=10')}
         >
           Previous
         </Button>
         <Button
+         sx={{marginTop:'1rem'}}
           variant="contained"
           onClick={() =>{handleNext()} }
-          disabled={nextUrl === null}
+          disabled={nextUrl === null || nextUrl === url ?nextUrl === `https://www.swapi.tech/api/people?page=${totalPages}&limit=10` : false}
         >
           Next
         </Button>
